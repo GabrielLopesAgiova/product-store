@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import { ProductsService } from '../../shared/services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -17,6 +20,10 @@ import { MatInputModule } from '@angular/material/input'
   styleUrl: './create.component.scss'
 })
 export class CreateComponent {
+  matSnackBar = inject(MatSnackBar);
+  productsService = inject(ProductsService);
+  router = inject(Router);
+
   form = new FormGroup({
     title: new FormControl<string>('', {
       nonNullable: true,
@@ -25,6 +32,16 @@ export class CreateComponent {
   });
 
   onSubmit() {
-    this.form.controls.title.value;
+    this.productsService.post({
+      title: this.form.controls.title.value
+    })
+    .subscribe(() => {
+      this.matSnackBar.open("Produto criado com sucesso!", "Ok", {
+        duration: 3000,
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom'
+      })
+    });
+    this.router.navigateByUrl('/');
   }
 }

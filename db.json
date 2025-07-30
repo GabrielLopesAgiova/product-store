@@ -1,8 +1,20 @@
 {
-    "products" : [
-        {
-            "id": "1",
-            "title": "Produto 1"
-        }
-    ]
+  "products": [
+    {
+      "id": "1",
+      "title": "Produto 1"
+    },
+    {
+      "id": "0bad",
+      "title": "Teste 2"
+    },
+    {
+      "id": "3321",
+      "title": "Motorola"
+    },
+    {
+      "id": "3454",
+      "title": "Camiseta"
+    }
+  ]
 }
