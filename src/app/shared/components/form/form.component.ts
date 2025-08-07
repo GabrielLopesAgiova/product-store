@@ -20,14 +20,18 @@ import { MatButtonModule } from '@angular/material/button';
 export class FormComponent {
   product = input<Product | null>(null);
 
+  form!: FormGroup;
+
   @Output() done = new EventEmitter<Product>()
 
-  form = new FormGroup({
-    title: new FormControl<string>(this.product()?.title ?? '', {
-      nonNullable: true,
-      validators: Validators.required
-    })
-  });
+  ngOnInit() {
+    this.form = new FormGroup({
+      title: new FormControl<string>(this.product()?.title ?? '', {
+        nonNullable: true,
+        validators: Validators.required
+      })
+    });
+  }
 
   onSubmit() {
     const product = this.form.value as Product;
