@@ -6,6 +6,7 @@ import { CardComponent } from './components/card/card.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { DialogConfirmationService } from '../../shared/services/dialog-confirmation.service';
+import { EmptyListComponent } from './components/empty-list/empty-list.component';
 
 
 
@@ -17,6 +18,7 @@ import { DialogConfirmationService } from '../../shared/services/dialog-confirma
   imports: [
     CardComponent,
     MatButtonModule,
+    EmptyListComponent,
     RouterLink
   ],
   templateUrl: './list.component.html',
@@ -24,7 +26,9 @@ import { DialogConfirmationService } from '../../shared/services/dialog-confirma
 })
 export class ListComponent {
 
-  products = signal<Product[]>(inject(ActivatedRoute).snapshot.data['products']);
+  products = signal<Product[]>(
+    inject(ActivatedRoute).snapshot.data['products']
+  );
 
   productsService = inject(ProductsService)
   dialogConfirmationService = inject(DialogConfirmationService)
