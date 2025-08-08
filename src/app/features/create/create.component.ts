@@ -2,14 +2,15 @@ import { Component, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../shared/services/products.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormComponent } from '../../shared/components/form/form.component';
 import { Product } from '../../shared/interfaces/product.interface';
+import { BackToIndexComponent } from "../../shared/components/back-to-index/back-to-index.component";
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [FormComponent],
+  imports: [FormComponent, BackToIndexComponent],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
